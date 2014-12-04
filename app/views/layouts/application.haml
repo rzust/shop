@@ -1,0 +1,214 @@
+!!!
+%html
+  %head
+    %meta{:charset => "utf-8"}
+    %title Importaciones Valeria
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+    = favicon_link_tag
+    / SEO Meta Tags
+    %meta{:content => "Importaciones Valeria, Valeria Import", :name => "description"}
+    %meta{:content => "importaciones, peru, lima, juguetes", :name => "keywords"}
+    %meta{:content => "Esotec Solutions", :name => "author"}
+    / Mobile Specific Meta Tag
+    %meta{:content => "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no", :name => "viewport"}
+    / Adding Media Queries Support for IE8
+    /[if lt IE 9]
+      <haml_loud> javascript_include_tag 'respond.js', 'data-turbolinks-track' => true </haml_loud>
+
+  %body.parallax
+    / Login Modal
+    / #loginModal.modal.fade{"aria-hidden" => "true", :role => "dialog", :tabindex => "-1"}
+    /   .modal-dialog
+    /     .modal-content
+    /       .modal-header
+    /         %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"}
+    /           %i.fa.fa-times
+    /         %h2
+    /           Login or
+    /           %a{:href => "register.html"} Register
+    /         %p.large Use social accounts
+    /         .social-login
+    /           %a.facebook{:href => "#"}
+    /             %i.fa.fa-facebook-square
+    /           %a.google{:href => "#"}
+    /             %i.fa.fa-google-plus-square
+    /           %a.twitter{:href => "#"}
+    /             %i.fa.fa-twitter-square
+    /       .modal-body
+    /         %form.login-form
+    /           .form-group.group
+    /             %label{:for => "log-email"} Email
+    /             %input#log-email.form-control{:name => "log-email", :placeholder => "Enter your email", :required => "", :type => "email"}
+    /             %a.help-link{:href => "#"} Forgot email?
+    /           .form-group.group
+    /             %label{:for => "log-password"} Password
+    /             %input#log-password.form-control{:name => "log-password", :placeholder => "Enter your password", :required => "", :type => "text"}
+    /             %a.help-link{:href => "#"} Forgot password?
+    /           .checkbox
+    /             %label
+    /               %input{:name => "remember", :type => "checkbox"}
+    /               Remember me
+    /           %input.btn.btn-success{:type => "submit", :value => "Login"}
+
+    / Header
+    %header{"data-offset-top" => "550", "data-stuck" => "650"}
+      / data-offset-top is when header converts to small variant and data-stuck when it becomes visible. Values in px represent position of scroll from top. Make sure there is at least 100px between those two values for smooth animation
+      / Search Form
+      %form.search-form.closed{:autocomplete => "off", :method => "get", :role => "form"}
+        .container
+          .close-search
+            %i.icon-delete
+          .form-group
+            %label.sr-only{:for => "search-hd"} Busca tu producto
+            %input#search-hd.form-control{:name => "search-hd", :placeholder => "Busca tu producto", :type => "text"}
+            %button{:type => "submit"}
+              %i.icon-magnifier
+      / Split Background
+      .left-bg
+      .right-bg
+      .container
+        %a.logo{:href => root_path}
+          = image_tag "logo_val.png", alt: "ValeriaImport"
+        / Mobile Menu Toggle
+        .menu-toggle
+          %i.fa.fa-list
+        .mobile-border
+          %span
+        / Main Menu
+        %nav.menu
+          %ul.main
+            %li.hide-sm
+              %br
+              / %a{:href => contact_path} Contáctenos
+          #navcatalog
+            #navbg
+            %ul.catalog
+              %li.active
+                %a{:href => root_path}
+                  %i.icon-home
+              - categories.each do |x|
+                - if x.children.empty?
+                  %li
+                    %a{:href => category_path(category_id: x.permalink)}
+                      = x.name
+                - else
+                  %li.has-submenu
+                    %a{:href => category_path(category_id: x.permalink)}
+                      = x.name
+                      %i.fa.fa-chevron-down
+                    %ul.submenu
+                      - x.children.each do |y|
+                        %li
+                          %a{:href => category_path(category_id: y.permalink)}
+                            = y.name
+
+              / %li.has-submenu
+              /   %a{:href => "#"} Samsung
+              /   %ul.sub-submenu
+              /     %li
+              /       %a{:href => "#"} Galaxy Note 3
+              /     %li
+              /       %a{:href => "#"} Galaxy S5
+              /     %li
+              /       %a{:href => "#"} Galaxy S3 Neo
+              /     %li
+              /       %a{:href => "#"} Galaxy Gear
+              /     %li
+              /       %a{:href => "#"} Galaxy S Duos 2
+              / %li
+              /   %a{:href => "#"} BlackBerry
+              / %li.offer
+              /   .col-1
+              /     %p.p-style2 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              /   .col-2
+              /     %img{:alt => "Special Offer", :src => "assets/offers/menu-drodown-offer.jpg"}
+              /     %a.btn.btn-block{:href => "#"}
+              /       %span> 584$
+              /       Special offer
+              / %li
+              /   %a{:href => "shop-filters-left-3cols.html"} Cameras
+              / %li
+              /   %a{:href => "shop-filters-left-3cols.html"} Personal computers
+              / %li
+              /   %a{:href => "shop-filters-left-3cols.html"} Gaming consoles
+              / %li
+              /   %a{:href => "shop-filters-left-3cols.html"} TV sets
+        / Toolbar
+        .toolbar.group
+          %button.search-btn.btn-outlined-invert
+            %i.icon-magnifier
+          /
+            <div class="middle-btns">
+            <a class="btn-outlined-invert" href="wishlist.html"><i class="icon-heart"></i> <span>Wishlist</span></a>
+            <a class="login-btn btn-outlined-invert" href="#" data-toggle="modal" data-target="#loginModal"><i class="icon-profile"></i> <span>Login</span></a>
+            </div>
+          / .cart-btn
+          /   %a.btn.btn-outlined-invert{:href => "shopping-cart.html"}
+          /     %i.icon-shopping-cart-content
+          /     %span 3
+          /   / Cart Dropdown
+          /   .cart-dropdown
+          /     %span
+          /     / Small rectangle to overlap Cart button
+          /     .body
+          /       %table
+          /         %tr
+          /           %th Items
+          /           %th Quantity
+          /           %th Price
+          /         %tr.item
+          /           %td
+          /             .delete
+          /             %a{:href => "#"} Good Joo-Joo Surfb
+          /           %td
+          /             %input{:type => "text", :value => "1"}
+          /           %td.price 89 005 $
+          /         %tr.item
+          /           %td
+          /             .delete
+          /             %a{:href => "#"} Good Joo-Joo Item
+          /           %td
+          /             %input{:type => "text", :value => "2"}
+          /           %td.price 4 300 $
+          /         %tr.item
+          /           %td
+          /             .delete
+          /             %a{:href => "#"} Good Joo-Joo
+          /           %td
+          /             %input{:type => "text", :value => "5"}
+          /           %td.price 84 $
+          /     .footer.group
+          /       .buttons
+          /         %a.btn.btn-outlined-invert{:href => "checkout.html"}
+          /           %i.icon-download>
+          /           Checkout
+          /         %a.btn.btn-outlined-invert{:href => "shopping-cart.html"}
+          /           %i.icon-shopping-cart-content>
+          /           To cart
+          /       .total 93 389 $
+
+    .page-content
+      = yield
+
+    / Sticky Buttons
+    .sticky-btns
+      %form.quick-contact{:method => "post", :name => "quick-contact"}
+        %h3 Contáctenos
+        %p.text-muted
+        .form-group
+          %label{:for => "qc-name"} Nombre
+          %input#qc-name.form-control.input-sm{:name => "qc-name", :placeholder => "Nombre completo", :required => "", :type => "text"}
+        .form-group
+          %label{:for => "qc-email"} Email
+          %input#qc-email.form-control.input-sm{:name => "qc-email", :placeholder => "Email", :required => "", :type => "email"}
+        .form-group
+          %label{:for => "qc-message"} Mensaje
+          %textarea#qc-message.form-control.input-sm{:name => "qc-message", :placeholder => "Ingrese su mensaje", :required => ""}
+        %input.btn.btn-success.btn-sm.btn-block{:type => "submit", :value => "Send"}
+      %span#qcf-btn
+        %i.fa.fa-envelope
+      %span#scrollTop-btn
+        %i.fa.fa-chevron-up
+    = render "layouts/shared/footer"

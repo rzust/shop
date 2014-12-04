@@ -1,0 +1,74 @@
+/ Hero Slider
+%section.hero-slider
+  #hero-slider.master-slider
+    / Slide 1
+    .ms-slide{"data-delay" => "7"}
+      .overlay
+      %img{:alt => "Nikon D4S", "data-src" => "images/hero/slideshow/slide_1.jpg", :src => "images/masterslider/blank.gif"}/
+      %h2.light-color.ms-layer{"data-delay" => "250", "data-duration" => "700", "data-ease" => "easeOutQuad", "data-effect" => "top(50,true)", :style => "width: 456px; left: 110px; top: 110px;"} Nikon D4S
+      %p.light-color.ms-layer{"data-delay" => "500", "data-duration" => "700", "data-ease" => "easeOutQuad", "data-effect" => "back(500)", :style => "width: 456px; left: 110px; top: 210px;"} Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea.
+      .ms-layer.button{"data-delay" => "950", "data-duration" => "600", "data-ease" => "easeOutQuad", "data-effect" => "bottom(50,true)", :style => "left: 110px; top: 300px;"}
+        %a.btn.btn-primary{:href => "#"}
+          %span> 1845$
+          Buy it now
+    / Slide 2
+    .ms-slide{"data-delay" => "7"}
+      %span.overlay
+      %img{:alt => "Nest", "data-src" => "images/hero/slideshow/slide_2.jpg", :src => "images/masterslider/blank.gif"}/
+      %h2.light-color.ms-layer{"data-delay" => "250", "data-duration" => "700", "data-ease" => "easeOutQuad", "data-effect" => "bottom(50,true)", :style => "width: 456px; left: 110px; top: 110px;"} Nest
+      %p.light-color.ms-layer{"data-delay" => "500", "data-duration" => "700", "data-ease" => "easeOutQuad", "data-effect" => "bottom(50,true)", :style => "width: 456px; left: 110px; top: 210px;"} Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea.
+      .ms-layer.button{"data-delay" => "950", "data-duration" => "600", "data-ease" => "easeOutQuad", "data-effect" => "rotatebottom(30|90,long,br,true)", :style => "left: 110px; top: 300px;"}
+        %a.btn.btn-primary{:href => "#"}
+          %span> 1640$
+          Buy it now
+    / Slide 3
+    .ms-slide{"data-delay" => "7"}
+      .overlay
+      %img{:alt => "3D Printer", "data-src" => "images/hero/slideshow/slide_1.jpg", :src => "images/masterslider/blank.gif"}/
+      %h2.light-color.ms-layer{"data-delay" => "250", "data-duration" => "700", "data-ease" => "easeOutQuad", "data-effect" => "left(50,true)", :style => "width: 456px; left: 110px; top: 110px;"} 3D Printer
+      %p.light-color.ms-layer{"data-delay" => "500", "data-duration" => "700", "data-ease" => "easeOutQuad", "data-effect" => "left(50,true)", :style => "width: 456px; left: 110px; top: 210px;"} Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea.
+      .ms-layer.button{"data-delay" => "950", "data-duration" => "600", "data-ease" => "easeOutQuad", "data-effect" => "left(50,true)", :style => "left: 110px; top: 300px;"}
+        %a.btn.btn-primary{:href => "#"}
+          %span> 2500$
+          Buy it now
+/ Hero Slider Close
+/ Categories
+%section.cat-tiles
+  .container
+    %h2 Browse categories
+    .row
+      - categories.each do |category|
+        .category.col-lg-2.col-md-2.col-sm-4.col-xs-6
+          %a{:href => "#"}
+            = image_tag category.image.path rescue ""
+            %p
+              = category.name
+
+/ Categories Close
+
+
+
+
+
+/ %section.category-slider
+/   .master-slider#cat-slider
+/     - categories.each do |category|
+/       .ms-slide
+/         / Background
+/         %img{:alt => "lorem ipsum dolor sit", "data-src" => "assets/categories/slides/bg_1.png", :src => "assets/masterslider/blank.gif"}/
+/         / Text
+/         .ms-layer.text-block{"data-delay" => "250", "data-duration" => "800", "data-ease" => "easeOutQuad", "data-effect" => "left(50,true)"}
+/           %h2.light-color
+/             Look for all macs
+/             %br
+/             in our shop!
+/           %p.light-color Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim.
+/           %a.btn.btn-primary{:href => "#"} Go to catalog
+/           %a.btn.btn-success{:href => "#"} Browse all PC
+/         / Image
+/         %img.ms-layer.img-block{:alt => "1", "data-delay" => "350", "data-duration" => "800", "data-ease" => "easeOutQuad", "data-effect" => "back(500)", :src => "assets/categories/slides/slide_1.png", :style => "right: 50px;"}/
+/         .ms-thumb
+/           = image_tag category.image.path rescue ""
+/           / %img{:alt => "1", :src => "assets/categories/thumbs/th_1.png"}/
+/           %h3
+/             = category.name

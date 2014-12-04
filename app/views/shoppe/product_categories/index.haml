@@ -1,0 +1,23 @@
+- @page_title = t('shoppe.product_category.product_categories')
+
+= content_for :header do
+  %p.buttons=link_to t('shoppe.product_category.new_category'), :new_product_category, :class => 'button green'
+  %h2.products= t('shoppe.product_category.product_categories')
+
+.table
+  %table.data
+    %thead
+      %tr
+        %th= t('shoppe.product_category.name')
+
+    %tbody
+      - if @product_categories.empty?
+        %tr.empty
+          %td= t('shoppe.product_category.no_categories')
+      - else
+        - for cat in parent_categories
+          %tr
+            %th.category= link_to cat.name, [:edit, cat]
+          - for child in cat.children
+            %tr
+              %td= link_to child.name, [:edit, child]

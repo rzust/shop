@@ -1,0 +1,58 @@
+/ Breadcrumbs
+%ol.breadcrumb
+  %li
+    %a{:href => root_path} Inicio
+  %li Contáctenos
+/ Breadcrumbs Close
+.container
+  %h2 Contáctenos
+/ Google Map
+%section.map.container
+  %iframe{:height => "400", :src => "https://www.google.com/maps/embed/v1/place?q=626%20Jiron%20Puno%2C%20Lima%2C%20Peru&key=AIzaSyAwkcIYjDJfzcrzhHQm4p2ouFftKdwKyDc&language=es", :style => "border:0", :width => "800"}
+/ Google Map Close
+/ Contacts
+%section.container
+  .row
+    / Contact Info
+    .col-lg-5.col-lg-offset-1.col-md-5.col-sm-5
+      %h3 Dirección & Contácto
+      .cont-info-widget
+        %ul
+          %li
+            %i.fa.fa-building
+            Importadora Valeria S.A.
+            %br
+            Jr. Puno 626 int. 118 Lima
+          %li
+            %i.fa.fa-building
+            Importaciones y Exportaciones Panda S.A.C.
+            %br
+            Jr. Puno 626 int. 215 Lima
+          %li
+            %a{:href => "#"}
+              %i.fa.fa-envelope
+              mail@bushido.com
+          %li
+            %a{:href => "#"}
+              %i.fa.fa-support
+              support@bushido.com
+          %li
+            %i.fa.fa-phone
+            427-1157
+          %li
+            %i.fa.fa-phone
+            427-2488
+    .col-lg-5.col-md-7.col-sm-7
+      %h3 Escríbenos
+      %form.contact-form{:method => "post"}
+        .form-group
+          %label.sr-only{:for => "cf-name"} Nombre
+          %input#cf-name.form-control{:name => "cf-name", :placeholder => "Ingrese su nombre", :required => "", :type => "text"}
+        .form-group
+          %label.sr-only{:for => "cf-email"} Email
+          %input#cf-email.form-control{:name => "cf-email", :placeholder => "Email", :required => "", :type => "email"}
+        .form-group
+          %label.sr-only{:for => "cf-message"} Mensaje
+          %textarea#cf-message.form-control{:name => "cf-message", :placeholder => "Mensaje", :required => "", :rows => "5"}
+        %input.btn.btn-primary{:type => "submit", :value => "Enviar"}
+/ Contacts Close

@@ -1,0 +1,247 @@
+%div{"ng-app" => "ValeriaImport", "ng-controller" => "CatalogCtrl as products"}
+  %ol.breadcrumb
+    %li
+      %a{:href => catalog_path}
+        %i.icon-home
+        Catalogo
+    - if @product_category
+      - if !@product_category.parent.nil?
+        %li
+          %a{:href => category_path(category_id: @product_category.parent.permalink)}
+            = @product_category.parent.name
+      %li
+        %a{:href => category_path(category_id: @product_category.permalink)}
+          = @product_category.name
+
+  %section.catalog-grid
+    .container
+      %h2.with-sorting
+        = @title
+        ({{products.list.length}})
+      .sorting
+        %a{:href => "#", "ng-click"=>"predicate = 'name'; reverse=!reverse"} Ordenar por nombre
+        %a{:href => "#", "ng-click"=>"predicate = 'price'; reverse=!reverse"} Ordenar por precio
+      / .subnav
+      /   %a{:href => "#"} iPhone cases
+      /   %a{:href => "#"} iPad cases
+      .row
+        .col-sm-12{"ng-show"=>"!products.list.length"}
+          %h4
+            No hay productos para mostrar...
+        .col-lg-3.col-md-4.col-sm-6{'ng-repeat'=>'product in products.list | orderBy:predicate:reverse | startFrom:products.currentPage*products.pageSize | limitTo:products.pageSize'}
+          .tile
+            .badges
+              / %span.sale
+            / .price-label
+            /   = currency_unit
+            /   {{product.price}}
+            %a{"ng-href" => "{{'/catalog/' + product.product_category.permalink + '/' + product.permalink}}"}
+              %img{:alt => "1", :src => "/assets/catalog/1.png"}
+              / = #image_tag x.default_image.path
+            .footer
+              %a{"ng-href" => "{{'/catalog/' + product.product_category.permalink + '/' + product.permalink}}"}
+                {{product.name}}
+              / %span by Pirate3d
+              / .tools
+              /   .rate
+              /     %span.active
+              /     %span.active
+              /     %span.active
+              /     %span
+              /     %span
+
+              /   %a.add-cart-btn{:href => "#"}
+              /     %span To cart
+              /     %i.icon-shopping-cart
+
+              /   .share-btn
+              /     .hover-state
+              /       %a.fa.fa-facebook-square{:href => "#"}
+              /       %a.fa.fa-twitter-square{:href => "#"}
+              /       %a.fa.fa-google-plus-square{:href => "#"}
+              /     %i.fa.fa-share
+
+              /   %a.wishlist-btn{:href => "#"}
+              /     .hover-state Wishlist
+              /     %i.fa.fa-plus
+
+
+      %ul.pagination{"ng-show"=>"products.list.length"}
+        %li.prev-page
+          %button.page-button.icon-arrow-left{"ng-disabled"=>"products.currentPage == 0", "ng-click"=>"products.currentPage=products.currentPage-1"}
+        %li
+          {{products.currentPage+1}}/{{products.numberOfPages()}}
+        / %li.active
+        /   %a{:href => "#"} 1
+        %li.next-page
+          %button.page-button.icon-arrow-right{:href => "#", "ng-disabled"=>"products.currentPage >= products.list.length/products.pageSize - 1", "ng-click"=>"products.currentPage=products.currentPage+1"}
+
+        / .filters-mobile.col-lg-3.col-md-3.col-sm-4
+        /   .shop-filters
+        /     %section.filter-section
+        /       %h3 Filtro por precio
+        /       %form{:method => "get", :name => "price-filters"}
+        /         %span#clearPrice.clear{"ng-click" => "products.clearPrice()"} Limpiar
+        /         .price-btns
+        /           / %button.btn.btn-success.btn-sm{:value => "below 50$", "ng-click"=>"products.filterPrice()"} menor a S/.50
+        /           / %br
+        /           %button.btn.btn-success.btn-sm{:value => "below 50$", "ng-click"=>"products.filterPrice(0,50)", 'ng-class'=>"{'disabled': products.priceStatus == 0}"} menor a S/.50
+        /           %br
+        /           %button.btn.btn-success.btn-sm{:value => "50$-100$", "ng-click"=>"products.filterPrice(50,100)", 'ng-class'=>"{'disabled': products.priceStatus == 50}"} S/.50 - S/.100
+        /           %br
+        /           %button.btn.btn-success.btn-sm{:value => "100$-300$", "ng-click"=>"products.filterPrice(100,300)", 'ng-class'=>"{'disabled': products.priceStatus == 100}"} S/.100 - S/.300
+        /           %br
+        /           %button.btn.btn-success.btn-sm{:value => "300$-1000$", "ng-click"=>"products.filterPrice(300,1000)", 'ng-class'=>"{'disabled': products.priceStatus == 300}"} S/.300 - S/.1000
+
+        / %section.filter-section
+        /   %h3 Filter by color
+        /   %span.clear.clearChecks Clear colors
+        /   %label
+        /     %input#color_0{:checked => "checked", :name => "colors", :type => "checkbox", :value => "black"}
+        /     Black (12)
+        /   %br
+        /   %label
+        /     %input#color_1{:name => "colors", :type => "checkbox", :value => "white"}
+        /     White (1)
+        /   %br
+        /   %label
+        /     %input#color_2{:name => "colors", :type => "checkbox", :value => "green"}
+        /     Green  (34)
+        /   %br
+        /   %label
+        /     %input#color_3{:name => "colors", :type => "checkbox", :value => "blue"}
+        /     Blue (23)
+        /   %br
+        /   %label
+        /     %input#color_4{:name => "colors", :type => "checkbox", :value => "red"}
+        /     Red (12)
+
+        / %section.filter-section
+        /   %h3 Filter by size
+        /   %span.clear.clearChecks Clear size
+        /   %label
+        /     %input#size_0{:checked => "checked", :name => "sizes", :type => "checkbox", :value => "small"}
+        /     Small (12)
+        /   %br
+        /   %label
+        /     %input#size_1{:name => "sizes", :type => "checkbox", :value => "white"}
+        /     Medium (34)
+        /   %br
+        /   %label
+        /     %input#size_2{:name => "sizes", :type => "checkbox", :value => "green"}
+        /     Large (11)
+        /   %br
+        /   %label
+        /     %input#size_3{:name => "sizes", :type => "checkbox", :value => "blue"}
+        /     Extra large (1)
+        /   %br
+        /   %label
+        /     %input#size_4{:name => "sizes", :type => "checkbox", :value => "red"}
+        /     Superman (0)
+
+        / %section.filter-section
+        /   %h3 Categories
+        /   %ul.categories
+        /     %li.has-subcategory
+        /       %a{:href => "#"} iPhone cases (123)
+
+        /       %ul.subcategory
+        /         %li
+        /           %a{:href => "#"} iPhone cases (1)
+        /         %li
+        /           %a{:href => "#"} iPad cases (45)
+        /         %li
+        /           %a{:href => "#"} MacBook cases (34)
+        /         %li
+        /           %a{:href => "#"} Something (12)
+        /         %li
+        /           %a{:href => "#"} Air cases (23)
+        /     %li
+        /       %a{:href => "#"} iPad cases (34)
+        /     %li
+        /       %a{:href => "#"} MacBook cases (78)
+        /     %li.has-subcategory
+        /       %a{:href => "#"} Something (45)
+        /       %ul.subcategory
+        /         %li
+        /           %a{:href => "#"} Subcategory (1)
+        /         %li
+        /           %a{:href => "#"} Subcategory (45)
+        /         %li
+        /           %a{:href => "#"} Subcategory (23)
+        /     %li
+        /       %a{:href => "#"} Air cases (23)
+
+
+:coffeescript
+
+  app = angular.module("ValeriaImport", ['ngResource', 'ngAnimate'])
+  app.config ["$httpProvider", ($httpProvider) ->
+    $httpProvider.defaults.headers.common['X-CSRF-Token'] = document.getElementsByName("csrf-token")[0].content
+    $httpProvider.defaults.headers.common['Accept'] = "application/json"
+  ]
+
+  # @CatalogCtrl = ["$scope", ($scope) ->
+
+  # ]
+
+  app.filter "startFrom", ->
+    (input, start) ->
+      start = +start #parse to int
+      input.slice start
+
+  app.controller "CatalogCtrl",
+    class CatalogCtrl
+      constructor: (@$location) ->
+        @items = JSON.parse("#{j @products.as_json(:include => [:product_category, :default_image, :product_attributes]).to_json.html_safe}")
+        @list = @items
+        @currentPage = 0
+        @pageSize = 10
+
+      numberOfPages: ->
+        Math.ceil @list.length / @pageSize
+
+
+
+      # list:  JSON.parse("#{j @products.as_json(:include => [:product_category, :default_image, :product_attributes]).to_json.html_safe}")
+
+      filterPrice: (min, max) ->
+        @list = @items.filter (x) -> min <= x.price <= max
+        @priceStatus = min
+
+      clearPrice: ->
+        @list = @items
+        @priceStatus = null
+
+      mySortFunction: (item) ->
+        if isNaN(item[$scope.sortExpression])
+          return item[$scope.sortExpression]
+        return parseInt(item[$scope.sortExpression])
+
+
+      go: (url) ->
+        @$location.path url
+
+
+        # return
+  # app.factory "Project", ["$resource", ($resource) ->
+  #   $resource("/projects/:id", {id: "@id"}, {update: {method: "PUT"}}, {query: {method: "GET", isArray:false}})
+  # ]
+
+  # app.factory "Category", ["$resource", ($resource) ->
+  #   $resource("/categories/:id", {id: "@id"}, {query: {method: "GET", isArray:false}})
+  # ]
+
+  #@CatalogCtrl = ["$scope", "Project", "Category", "repositionService", ($scope, Project, Category)
+
+
+
+
+
+
+
+
+
+
+
+

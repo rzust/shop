@@ -1,0 +1,608 @@
+es:
+  activerecord:
+    models:
+      shoppe/country:
+        one: País
+        other: Países
+      shoppe/delivery_service:
+        one: Servicio de Entrega
+        other: Servicios de Entrega
+      shoppe/delivery_service_price:
+        one: Precio de Servicio de Entrega
+        other: Precios de Servicio de Entrega
+      shoppe/order:
+        one: Orden
+        other: Órdenes
+      shoppe/order_item:
+        one: Item de Orden
+        other: Items de Orden
+      shoppe/payment:
+        one: Pago
+        other: Pagos
+      shoppe/product:
+        one: Producto
+        other: Productos
+      shoppe/product_attribute:
+        one: Atributo de Producto
+        other: Atributos de Producto
+      shoppe/product_category:
+        one: Categoría de Producto
+        other: Categorías de Producto
+      shoppe/setting:
+        one: Configuración
+        other: Configuraciones
+      shoppe/stock_level_adjustment:
+        one: Ajuste de Nivel de Stock
+        other: Ajustes de Nivel de Stock
+      shoppe/tax_rate:
+        one: Tasa de Impuesto
+        other: Tasas de Impuesto
+      shoppe/user:
+        one: Usuario
+        other: Usuarios
+
+    attributes:
+      shoppe/order:
+        billing_address1: Billing address1
+        billing_address3: Billing address3
+        billing_address4: Billing address4
+        billing_country: Billing country
+        billing_postcode: Billing postcode
+        delivery_address1: Delivery address1
+        delivery_address3: Delivery address3
+        delivery_address4: Delivery address4
+        delivery_country: Delivery country
+        delivery_name: Delivery name
+        delivery_service_id: Delivery service
+        delivery_postcode: Delivery postcode
+        email_address: E-Mail address
+        first_name: First name
+        last_name: Last name
+        phone_number: Phone number
+        status: Status
+        token: Token
+      shoppe/country:
+        name: Nombre
+      shoppe/delivery_service:
+        name: Nombre
+        courier: Courier
+      shoppe/delivery_service_price:
+        code: Código
+        cost_price: Costo
+        max_weight: Peso max
+        min_weight: Peso min
+        price: Precio
+      shoppe/order_item:
+        ordered_item: Ordened Item
+        quantity: Quantity
+      shoppe/payment:
+        amount: Amount
+        method: Method
+        reference: Reference
+      shoppe/product:
+        cost_price: Costo
+        description: Descripción
+        name: Nombre
+        permalink: Permalink
+        price: Precio
+        short_description: Descripción Corta
+        sku: SKU
+        weight: Peso
+      shoppe/product_attribute:
+        key: Atributo
+      shoppe/product_category:
+        name: Nombre
+        permalink: Permalink
+      shoppe/setting:
+        key: Nombre
+        value: Valor
+        value_type: Tipo de Valor
+      shoppe/stock_level_adjustment:
+        adjustment: Ajuste
+        description: Descripción
+        must_be_greater_or_equal_zero: debe ser mayor o igual a cero
+      shoppe/tax_rate:
+        address_type: Tipo de Dirección
+        name: Nombre
+        rate: Tarifa
+      shoppe/user:
+        email_address: E-Mail
+        first_name: Nombre
+        last_name: Apellido
+        password: Contraseña
+        password_confirmation: Confirmación de Contraseña
+    errors:
+      template:
+        body: ! 'Hubo un error con los siguientes campos:'
+        header:
+          one: "1 no dejó que el %{model} se guarde"
+          many: "! '%{count} errores no dejaron que el %{model} se guarde'"
+          other: "! '%{count} errores no dejaron que el %{model} se guarde'"
+      models:
+        shoppe/delivery:
+          attributes:
+            delivery_service_id:
+              must_be_specified: must be specified
+              not_suitable: is not suitable for this order
+        shoppe/order:
+          attributes:
+            delivery_service_id:
+              must_be_specified: Must be specified
+        shoppe/product:
+          attributes:
+            base:
+              can_belong_to_root: solo puede pertenecer a un producto base
+        shoppe/order_item:
+          attributes:
+            quantity:
+              too_high_quantity: is too high for the quantity in stock
+        shoppe/payment:
+          refund_failed: "Refunds must be less than the payment (%{refundable_amount})"
+
+  will_paginate:
+    next_label: "Siguiente &#8594;"
+    page_gap: "&hellip;"
+    previous_label: "&#8592; Anterior"
+
+    page_entries_info:
+
+      single_page:
+        zero:  "%{model} no encontrado"
+        one:   "Mostrando 1 %{model}"
+        other: "Mostrando los %{count} %{model}"
+
+      single_page_html:
+        zero:  "%{model} no encontrado"
+        one_html:   "Mostrando <b>1</b> %{model}"
+        other_html: "Mostrando <b>todos&nbsp;los&nbsp;%{count}</b> %{model}"
+
+      multi_page: "Mostrando %{model} %{from} - %{to} de %{count} en total"
+      multi_page_html: "Mostrando %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> de <b>%{count}</b> en total"
+
+  helpers:
+    number_to_weight:
+      kg: kg
+    page_entries_info:
+      one_page:
+        display_entries: Mostrar registros
+    attachment_preview:
+      delete: Eliminar
+      delete_confirm: Está seguro que desea remover este adjunto?
+      no_attachment: Sin adjunto
+
+  shoppe:
+
+    # common
+    cancel: Cancelar
+    close: Cerrar
+    delete: Eliminar
+    edit: Editar
+    remove: Remover
+    submit: Ingresar
+
+    attachments:
+      remove_notice: El adjunto fue removido satisfactoriamente
+
+    countries:
+      back: Regresar a Países
+      continent: Continente
+      countries: Países
+      country_details: Detalles
+      create_notice: Country has been created successfully
+      delete_confirmation: Are you sure you wish to remove this country?
+      destroy_notice: Country has been removed successfully
+      eu?: EU?
+      eu_member: EU Member?
+      is_eu_member: Country is an EU member?
+      iso_alpha_2: ISO 3166-1-alpha-2
+      iso_alpha_3: ISO 3166-1-alpha-3
+      name: Nombre
+      new_country: New country
+      tld: TLD
+      update_notice: Country has been updated successfully
+
+    delivery_service_prices:
+      all_countries: All Countries
+      back: Back to prices
+      back_to_delivery_services: Back to delivery services
+      code: Code
+      cost: Cost
+      cost_price: Cost price
+      countries: Countries
+      create_notice: Price has been created successfully
+      delivery_services: Delivery Services
+      destroy_notice: Price has been removed successfully
+      identification_weight: Identification & Weight
+      max_weight: Max weight
+      min_weight: Min weight
+      new_price: New price
+      no_tax: No tax
+      price: Price
+      pricing: Pricing
+      pricing_for: "Delivery Pricing for %{delivery_name}"
+      tax_rate: Tax rate
+      update_notice: Price has been updated successfully
+      weight_allowance: Weight Allowance
+
+      help:
+        countries: This delivery rate will only be available to orders where the country selected is listed here.
+
+    delivery_services:
+      active?: Activo?
+      active: Activo
+      active_info: Service will be available for use
+      back: Back to delivery services
+      code: Code
+      courier: Courier
+      courier_name: Courier name
+      create_notice: Delivery Service has been created successfully
+      default?: Default?
+      default: Default
+      default_info: Service will be used by default (if possible)
+      delivery_services: Delivery Services
+      destroy_notice: Delivery Service has been removed successfully
+      delete_confirmation: Are you sure you wish to remove this delivery service?
+      details: Details
+      name: Nombre
+      new: New delivery service
+      no_services: No delivery services to display.
+      prices: Prices
+      set_prices: Set Prices
+      tracking_url: Tracking URL
+      tracking_url_help_html: Use <code>{{consignment_number}}</code> to insert the consignment number.
+      update_notice: Delivery Service has been updated successfully
+
+    orders:
+
+      accept: Accept
+      accept_notice: Orden has been accepted successfully
+      add_payment: Add payment
+      add_item: Add an item
+      address: Address
+      amount: Amount
+      back_to_order: Back to order
+      back_to_orders: Back to orders
+      billing_address: Billing Address
+      billing_delivery_address: Billing/Delivery Address
+      build_time: Build time
+      company: Company
+      consignment_number: Consignment Number
+      cost: Cost
+      country: Country
+      create_order: Create order
+      create_notice: Orden has been created successfully
+      customer: Customer
+      delivery_address: Delivery address
+      delivery_name: Delivery name
+      edit_order: Edit order
+      email_address: E-Mail address
+      first_name: First name
+      from_payment: from payment
+      id: ID
+      in_progress_warning: This order is still being built by the customer in your store. At present you can only view the items which are within the order.
+      invoice_number: Invoice number
+      insufficient_stock_order: "Insufficient stock to order %{out_of_stock_items }. Quantities have been updated to max total stock available."
+      item: Item
+      last_name: Last name
+      mark_as_shipped: Mark as shipped
+      method: Method
+      missing_delivery_service: No suitable delivery service available, order cannot be created without an associated delivery service.
+      name: Nombre
+      new_order: New order
+      no_delivery_required: No delivery required for this order.
+      no_orders: No orders to display.
+      no_payments: There are no payments recorded for this order...
+      notes: Notes
+      number: Number
+      order: Orden
+      order_accepted: Orden Accepted
+      order_balance: Orden Balance
+      order_items: Orden items
+      order_no_html: "Orden <b>#%{order_number}</b>"
+      order_number: Orden number
+      order_received: Orden Received
+      order_rejected: Orden Rejected
+      order_shipped: Orden Shipped
+      ordered_products: Ordened products
+      orders: Ordens
+      payment: Payment
+      payment_remove_confirmation: Are you sure you wish to remove this payment?
+      payments: Payments
+      phone_number: Phone number
+      post_code: Post code
+      price: Price
+      product: Product
+      products: Products
+      qty: Qty
+      quantity: Quantity
+      received_between: Received between
+      reference: Reference
+      refund: Refund
+      refunded?: Refunded?
+      reject: Reject
+      reject_notice: Orden has been rejected successfully
+      save_order: Save order
+      search: Search
+      search_orders: Search orders
+      select_country: Select a country
+      separate_delivery_address: Separate delivery address
+      ship_notice: Orden has been shipped successfully
+      sku: SKU
+      sla_warning: Any changes to quantities will update the appropriate stock levels for the associated product.
+      status: Status
+      stock: Stock
+      sub_total: Sub-Total
+      tax: Tax
+      telephone: Telephone
+      total: Total
+      type: Type
+      unit_price: Unit price
+      update_notice: Orden has been saved successfully
+      use_separate_delivery_address?: Use a separate delivery address?
+      weight: Weight
+
+      status_bar:
+        by_user: "by %{user}"
+        consignment_no_html: "Consignment #<b>%{consignment_number}</b>"
+        from_ip: "from %{ip}"
+        on_date: "on %{on}"
+        tracking_url:  Tracking URL
+
+      despatch_note:
+        despatch_note: Despatch note
+        footer: Thank you for your order!
+        order_number: Orden number
+        order_placed: Orden placed
+        packed?: Packed?
+        product: Product
+        quantity: Quantity
+        sku: SKU
+        telephone: Telephone
+        total_weight: Total weight
+        weight: Weight
+
+      statuses:
+        accepted: Accepted
+        building: Building
+        confirming: Confirming
+        received: Received
+        rejected: Rejected
+        shipped: Shipped
+
+    refund:
+      intro_html: "To issue a refund for this payment, just enter the amount you wish to refund below and click 'Refund'.  The maximum you can refund is <b>%{amount}</b>."
+      issue_refund: Issue Refund
+      refund: Refund
+
+    product_category:
+      attachments: Adjuntos
+      back_to_categories: Regresar a Categorías
+      category_details: Detalles
+      create_notice: La categoría fue creada satisfactoriamente
+      delete_confirmation:  Está seguro que desea eliminar esta categoría?
+      description: Descripción
+      destroy_notice: Se eliminó la categoría satisfactoriamente
+      image: Imagen
+      name: Nombre
+      new_category: Nueva categoría
+      no_categories: No hay categorías para mostrar.
+      permalink: Permalink
+      product_categories: Categorías de Producto
+      update_notice: La categoría fue actualizada satisfactoriamente
+
+    products:
+      add_attribute: Agregar atributo
+      attachments: Adjuntos
+      attributes: Atributos
+      back_to_products: Regresar a Productos
+      cost_price: Costo
+      create_notice: Se ha creado el producto satisfactoriamente!
+      datasheet: Datasheet
+      default_image: Imagen Predeterminada
+      showcase_image_1: "Imagen 1"
+      showcase_image_2: "Imagen 2"
+      showcase_image_3: "Imagen 3"
+      showcase_image_4: "Imagen 4"
+      description: Descripción
+      destroy_notice: Ha eliminado el producto satisfactoriamente
+      edit: Editar
+      enable_stock_control?:  Habilitar Stock para este producto?
+      featured?: Destacado?
+      featured_info:  Si está marcado, se mostrara en la página de inicio
+      in_the_box: Qué hay en la caja?
+      name: Nombre
+      new_product: Nuevo producto
+      no_products: No hay productos para mostrar.
+      no_stock: No hay stock
+      no_tax: No tiene impuestos
+      on_sale?: En venta?
+      on_sale_info:  Si está marcado, aparecera en la tienda
+      permalink: Permalink
+      price: Precio
+      price_variants: Precio/Variantes
+      pricing: Precio
+      product_category: Categoría
+      product_information: Información de Producto
+      products: Productos
+      public?: Público?
+      remove: Eliminar
+      searchable?: Buscable?
+      short_description: Descripción corta
+      sku: SKU
+      stock: Stock
+      stock_control: Control de Stock
+      stock_levels: Nivel de Stock
+      tax_rate: Tasa de Impuestos
+      value: Valor
+      variants: Variantes
+      update_notice: El producto se ha actualizado satisfactoriamente
+      website_properties: Propiedades del sitio web
+      weight: Peso
+
+    sessions:
+      admin_login: Login de Administrador
+      create_alert: El email y/o contraseña son invalidos, por favor intente de nuevo.
+      back_to_login: Regresar al login
+      email:  E-Mail
+      login: Login
+      password: Contraseña
+      reset: Resetear
+      reset_password: Resetear su contraseña
+      reset_password?: Resetear su contraseña?
+      reset_alert: No se encontró ni un usuario con ese e-mail
+      reset_notice: "Se le ha enviado un e-mail a %{email_address} con una nueva contrseña"
+
+    shared:
+      back_to_shoppe: Regresar a la Consola
+      error: Error
+      error_occurred: Ocurrió un error
+
+    stock_level_adjustments:
+      add: Add
+      adjustment: Adjustment
+      back_to_product: Back to product list
+      create_notice: Adjustment has been added successfully
+      current_stock_level_html: "Current stock level is <b>%{item_stock}</b>"
+      date: Date
+      description: Description
+      edit_product: Edit product
+      invalid_item_type: "Invalid item_type (must be one of %{suitable_objects})"
+      stock_levels_for: "Stock Levels for %{item_name}"
+      stock_levels_title: "Stock Levels - %{item_name}"
+
+    tax_rates:
+      address_type_option: "Apply to orders where the %{address} address matches one of the countries below"
+      all_countries: All countries
+      back_to_tax_rates: Back to tax rates
+      billing: billing
+      country_restriction: Country Restriction
+      create_notice: Tax rate has been created successfully
+      delete_confirmation: Are you sure you wish to remove this tax rate?
+      delivery: delivery
+      destroy_notice: Tax rate has been removed successfully
+      name: Nombre
+      new_tax_rate: New tax rate
+      rate: Rate
+      rate_details: Rate Details
+      tax_rates: Tax Rates
+      update_notice: Tax rate has been updated successfully
+
+    users:
+      back_to_users: Regresar a Usuarios
+      create_notice: El usuario se ha creado satisfactoriamente
+      delete_confirmation:  Está seguro que desea eliminar este usuario?
+      demo_mode_error: No puede hacer cambios a usuarios en modo demo.
+      destroy_notice: Se ha eliminado el usuario satisfactoriamente
+      email: E-Mail
+      first_name: Nombre
+      last_name: Apellido
+      login: Login
+      name: Nombre
+      new_user: Nuevo Usuario
+      password: Contraseña
+      password_confirmation: ...confirmar
+      self_remove_error: No puede autoeliminarse
+      update_notice: El usuario se actualizó satisfactoriamente
+      user_details: Detalles de usuario
+      users: Usuarios
+
+    variants:
+      back_to_variants: Regresar a variantes
+      cost_price: Costo
+      create_notice: Se creó la variante satisfactoriamente
+      default_variant?: Variante Predeterminada?
+      default_variant_info: Si está marcada, esta variante se la predeterminada
+      delete_confirmation: Está seguro que desea eliminar esta variante?
+      destroy_notice: La variante fue eliminada satisfactoriamente
+      edit_product: Editar Producto
+      edit_variant: Nueva variante
+      enable_stock_control?: Habilitar control de stock?
+      image: Imagen
+      name: Nombre
+      no_products: No hay productos para mostrar.
+      no_stock: No hay stock
+      no_tax: No tiene impuesto
+      new_variant: Nueva variante
+      on_sale?: En venta?
+      on_sale_info: Si está marcado, aparecera en la tienda
+      permalink: Permalink
+      price: Precio
+      pricing: Precio
+      product_information: Información de Producto
+      save_variant: Guardar Variante
+      sku: SKU
+      stock: Stock
+      stock_control: Control de Stock
+      tax_rate: Tasa de Impuesto
+      update_notice: La variante se ha actualizado satisfactoriamente
+      variants: Variantes
+      variants_of: "Variantes de %{product}"
+      website_properties: Propiedades del sitio web
+      weight: Peso
+
+    payments:
+      create_notice: Payment has been added successfully
+      destroy_notice: Payment has been removed successfully
+      refund_notice: Refund has been processed successfully.
+
+    navigation:
+      admin_primary:
+        orders: Ordenes
+        products: Productos
+        product_categories: Categorías
+        delivery_services: Servicios de Entrega
+        tax_rates: Tasas de Impuestos
+        users: Usuarios
+        countries: Países
+        settings: Configuraciones
+
+
+    settings:
+
+      settings: Configuraciones
+      system_settings: Configuraciones del Sistema
+      demo_mode_error: No puede hacer cambios en modo Demo.
+      update_notice:  Se han actualizado satisfactoriamente las configuraciones
+
+      types:
+        # Force certain settings to certain type
+        demo_mode: boolean
+
+      labels:
+        # Labels for fields go here
+        email_address: E-Mail de la tienda
+        store_name: Nombre de la tienda
+        currency_unit: Moneda
+        tax_name: Nombre de Impuesto
+        demo_mode: Modo Demo
+
+      options:
+        # Options for boolean settings
+        demo_mode:
+          affirmative: Enabled
+          negative: Disabled
+
+      help:
+        # Help text for individual fields
+        currency_unit: The symbol to be displayed before all numbers which relate to money. Only applies to the admin interface and must be implemented separately in your base application.
+        demo_mode: If enabled, your Shoppe admin interface will allow any users to login and will not permit changes to your users. This should be used with caution and never enabled for a production store.
+        email_address: The e-mail address to use when sending outbound messages. Must just be an e-mail address.
+        store_name: This is the name of your store which will be used through the Shoppe admin interface as well as in the default outbound e-mail messages.
+        tax_name: The name for "Tax" which will be displayed in your admin interface. Commonly replaced with VAT in European countries.
+
+      save_settings: Guargar Configuraciones
+      page_title: Settings
+
+      defaults:
+        currency_unit: $
+        demo_mode: false
+        email_address: sales@example.com
+        store_name: Widgets Inc.
+        tax_name: Tax
+
+  layouts:
+    shoppe:
+      application:
+        goto: Goto
+        logged_in_as: "Logged in as %{user_name}"
+        logout: Logout

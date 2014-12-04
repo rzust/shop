@@ -1,0 +1,177 @@
+
+%ol.breadcrumb
+  %li
+    = link_to "Catálogo", catalog_path
+  - if !@product.product_category.parent.nil?
+    %li
+      %a{:href => "shop-filters-left-3cols.html"}
+        = @product.product_category.parent.name
+  %li
+    %a{:href => "shop-filters-left-3cols.html"}
+      = @product.product_category.name
+  %li
+    = @product.name
+
+
+%section.cart-message
+  %i.fa.fa-check-square
+  %p.p-style3 "Nikon" was successfully added to your cart.
+  %a.btn-outlined-invert.btn-success.btn-sm{:href => "shopping-cart.html"} View cart
+
+
+%section.catalog-single
+  .container
+    .row
+
+      .col-lg-6.col-md-6
+        #prod-gal.prod-gal.master-slider
+
+          .ms-slide
+            %img{:alt => "Lorem ipsum", "data-src" => (@product.showcase_image_1.path rescue ""), :src => "masterslider/blank.gif"}
+            %img.ms-thumb{:alt => "thumb", :src => (@product.showcase_image_1.path rescue "")}
+
+          .ms-slide
+            %img{:alt => "Lorem ipsum", "data-src" => (@product.showcase_image_2.path rescue ""), :src => "masterslider/blank.gif"}
+            %img.ms-thumb{:alt => "thumb", :src => (@product.showcase_image_2.path rescue "")}
+
+          .ms-slide
+            %img{:alt => "Lorem ipsum", "data-src" => (@product.showcase_image_3.path rescue ""), :src => "masterslider/blank.gif"}
+            %img.ms-thumb{:alt => "thumb", :src => (@product.showcase_image_3.path rescue "")}
+
+          .ms-slide
+            %img{:alt => "Lorem ipsum", "data-src" => (@product.showcase_image_4.path rescue ""), :src => "masterslider/blank.gif"}
+            %img.ms-thumb{:alt => "thumb", :src => (@product.showcase_image_4.path rescue "")}
+
+      .col-lg-6.col-md-6
+        %h1
+          = @product.name
+        / .rate
+        /   %span.active
+        /   %span.active
+        /   %span.active
+        /   %span
+        /   %span
+        / .old-price 815,00 $
+        / .price
+        /   = currency_unit
+        /   = @product.price
+        / .buttons.group
+        /   .qnt-count
+        /     %a.incr-btn{:href => "#"} -
+        /     %input#quantity.form-control{:type => "text", :value => "1"}
+        /     %a.incr-btn{:href => "#"} +
+        /   / %a#addItemToCart.btn.btn-primary.btn-sm{:href => "#"}
+        /   /   %i.icon-shopping-cart>
+        /   /   Add to cart
+        /   %a.btn.btn-success.btn-sm{:href => "#"}
+        /     %i.icon-heart>
+        /     Add to wishlist
+        %p.p-style2
+          = @product.description
+        / .row
+        /   .col-lg-4.col-md-4.col-sm-5
+        /     %h3 Tell friedns
+        /     .social-links
+        /       %a{:href => "#"}
+        /         %i.fa.fa-tumblr-square
+        /       %a{:href => "#"}
+        /         %i.fa.fa-pinterest-square
+        /       %a{:href => "#"}
+        /         %i.fa.fa-facebook-square
+        /   .col-lg-8.col-md-8.col-sm-7
+        /     %h3 Tags
+        /     .tags
+        /       %a{:href => "#"} Nikon,
+        /       %a{:href => "#"} camera,
+        /       %a{:href => "#"} hd video
+        / .promo-labels
+        /   %div{"data-content" => "Vivamus sagittis lacus vel augue laoreet rutrum faucibus."}
+        /     %span
+        /       %i.fa.fa-truck>
+        /       Free delivery
+        /   %div{"data-content" => "Vivamus sagittis lacus vel augue laoreet rutrum faucibus."}
+        /     %i.fa.fa-space-shuttle>
+        /     Deliver even on Mars
+        /   %div{"data-content" => "Vivamus sagittis lacus vel augue laoreet rutrum faucibus."}
+        /     %i.fa.fa-shield>
+        /     Safe Buy
+
+
+%section.tabs-widget
+
+  %ul.nav.nav-tabs
+    %li.active
+      %a{"data-toggle" => "tab", :href => "#descr"} Descripción
+    %li
+      %a{"data-toggle" => "tab", :href => "#specs"} Especificaciones
+    %li
+      %a{"data-toggle" => "tab", :href => "#review"} Comentarios
+  .tab-content
+    - unless @attributes.empty?
+      #specs.tab-pane.fade
+        .container
+          .row
+            %section.tech-specs
+              .container
+                - @attributes.each_slice(2) do |attribute|
+                  .row
+                    .col-lg-6.col-md-6.col-sm-6
+
+                      .item
+                        .row
+                          .col-lg-1.col-md-1.col-sm-4
+                            %i.icon-expand
+                          .col-lg-2.col-md-2.col-sm-4
+                            %span
+                              = attribute[0].key
+                              = ":"
+                          .col-lg-8.col-md-8.col-sm-4
+                            %span
+                              =  link_to attribute[0].value, ""#product_filter_path(:key => attribute[0].key, :value => attribute[0].value)
+
+                    .col-lg-6.col-md-6.col-sm-6
+
+                      .item
+                        .row
+                          .col-lg-1.col-md-1.col-sm-4
+                            %i.icon-expand
+                          .col-lg-2.col-md-2.col-sm-4
+                            %span
+                              = attribute[1].key
+                              = ":"
+                          .col-lg-8.col-md-8.col-sm-4
+                            %span
+                              =  link_to attribute[1].value, ""#product_filter_path(:key => attribute[1].key, :value => attribute[1].value)
+
+
+
+    #descr.tab-pane.fade.in.active
+      .container
+        .row
+          .col-lg-4.col-md-5.col-sm-5
+            %img.center-block{:alt => "Description", :src => @product.default_image.path}
+          .col-lg-8.col-md-7.col-sm-7
+            %p.p-style2
+              = @product.description
+
+    #review.tab-pane.fade
+      .container
+        .row
+          .col-lg-10.col-lg-offset-1
+            #disqus_thread
+            :javascript
+              /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+              var disqus_shortname = '8guild';  // replace with forum name
+
+              /* * * DON'T EDIT BELOW THIS LINE * * */
+              (function() {
+                  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+              })();
+            %noscript
+              Please enable JavaScript to view the
+              %a{:href => "http://disqus.com/?ref_noscript"} comments powered by Disqus.
+            %a.dsq-brlink{:href => "http://disqus.com"}
+              comments powered by
+              %span.logo-disqus Disqus

@@ -1,0 +1,7 @@
+development:
+  adapter: mysql2
+  encoding: utf8
+  database: shop_development
+  username: root
+  password: razm
+  host: localhost
