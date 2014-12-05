@@ -248,3 +248,11 @@ footer.footer{
     }
   }
 }
+
+
+@media(max-width: 1200px){
+  header .menu .catalog li a {
+    padding: 20px 18px;
+    font-size: 12px;
+  }
+}
