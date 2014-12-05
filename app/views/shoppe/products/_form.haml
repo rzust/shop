@@ -95,36 +95,36 @@
             %p= f.file_field :showcase_image_4_file
       .clear
 
-  - unless @product.has_variants?
-    = field_set_tag t('shoppe.products.pricing') do
-      .splitContainer
-        %dl.third
-          %dt= f.label :price, t('shoppe.products.price')
-          %dd
-            .moneyInput
-              .currency= Shoppe.settings.currency_unit.html_safe
-              = f.text_field :price, :class => 'text'
-        %dl.third
-          %dt= f.label :cost_price, t('shoppe.products.cost_price')
-          %dd
-            .moneyInput
-              .currency= Shoppe.settings.currency_unit.html_safe
-              = f.text_field :cost_price, :class => 'text'
-        %dl.third
-          %dt= f.label :tax_rate_id, t('shoppe.products.tax_rate')
-          %dd= f.collection_select :tax_rate_id, Shoppe::TaxRate.ordered, :id, :description, {:include_blank => true}, {:class => 'chosen-with-deselect', :data => {:placeholder => t('shoppe.products.no_tax')}}
+  / - unless @product.has_variants?
+  /   = field_set_tag t('shoppe.products.pricing') do
+  /     .splitContainer
+  /       %dl.third
+  /         %dt= f.label :price, t('shoppe.products.price')
+  /         %dd
+  /           .moneyInput
+  /             .currency= Shoppe.settings.currency_unit.html_safe
+  /             = f.text_field :price, :class => 'text'
+  /       %dl.third
+  /         %dt= f.label :cost_price, t('shoppe.products.cost_price')
+  /         %dd
+  /           .moneyInput
+  /             .currency= Shoppe.settings.currency_unit.html_safe
+  /             = f.text_field :cost_price, :class => 'text'
+  /       %dl.third
+  /         %dt= f.label :tax_rate_id, t('shoppe.products.tax_rate')
+  /         %dd= f.collection_select :tax_rate_id, Shoppe::TaxRate.ordered, :id, :description, {:include_blank => true}, {:class => 'chosen-with-deselect', :data => {:placeholder => t('shoppe.products.no_tax')}}
 
-    = field_set_tag  t('shoppe.products.stock_control') do
-      .splitContainer
-        %dl.half
-          %dt= f.label :weight, t('shoppe.products.weight')
-          %dd= f.text_field :weight, :class => 'text'
+  /   = field_set_tag  t('shoppe.products.stock_control') do
+  /     .splitContainer
+  /       %dl.half
+  /         %dt= f.label :weight, t('shoppe.products.weight')
+  /         %dd= f.text_field :weight, :class => 'text'
 
-        %dl.half
-          %dt= f.label :stock_control,  t('shoppe.products.stock_control')
-          %dd.checkbox
-            = f.check_box :stock_control
-            = f.label :stock_control, t('shoppe.products.enable_stock_control?')
+  /       %dl.half
+  /         %dt= f.label :stock_control,  t('shoppe.products.stock_control')
+  /         %dd.checkbox
+  /           = f.check_box :stock_control
+  /           = f.label :stock_control, t('shoppe.products.enable_stock_control?')
 
   = field_set_tag  t('shoppe.products.website_properties') do
     .splitContainer
