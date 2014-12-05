@@ -36,8 +36,7 @@
             /   = currency_unit
             /   {{product.price}}
             %a{"ng-href" => "{{'/catalog/' + product.product_category.permalink + '/' + product.permalink}}"}
-              %img{:alt => "1", :src => "/assets/catalog/1.png"}
-              / = #image_tag x.default_image.path
+              = image_tag x.default_image.path
             .footer
               %a{"ng-href" => "{{'/catalog/' + product.product_category.permalink + '/' + product.permalink}}"}
                 {{product.name}}
