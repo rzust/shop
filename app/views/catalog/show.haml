@@ -12,13 +12,6 @@
   %li
     = @product.name
 
-
-%section.cart-message
-  %i.fa.fa-check-square
-  %p.p-style3 "Nikon" was successfully added to your cart.
-  %a.btn-outlined-invert.btn-success.btn-sm{:href => "shopping-cart.html"} View cart
-
-
 %section.catalog-single
   .container
     .row
@@ -27,19 +20,19 @@
         #prod-gal.prod-gal.master-slider
 
           .ms-slide
-            %img{:alt => "Lorem ipsum", "data-src" => (@product.showcase_image_1.path rescue ""), :src => "masterslider/blank.gif"}
+            %img{:alt => @product.name, "data-src" => (@product.showcase_image_1.path rescue ""), :src => (@product.showcase_image_1.path rescue "")}
             %img.ms-thumb{:alt => "thumb", :src => (@product.showcase_image_1.path rescue "")}
 
           .ms-slide
-            %img{:alt => "Lorem ipsum", "data-src" => (@product.showcase_image_2.path rescue ""), :src => "masterslider/blank.gif"}
+            %img{:alt => @product.name, "data-src" => (@product.showcase_image_2.path rescue ""), :src => (@product.showcase_image_2.path rescue "")}
             %img.ms-thumb{:alt => "thumb", :src => (@product.showcase_image_2.path rescue "")}
 
           .ms-slide
-            %img{:alt => "Lorem ipsum", "data-src" => (@product.showcase_image_3.path rescue ""), :src => "masterslider/blank.gif"}
+            %img{:alt => @product.name, "data-src" => (@product.showcase_image_3.path rescue ""), :src => (@product.showcase_image_3.path rescue "")}
             %img.ms-thumb{:alt => "thumb", :src => (@product.showcase_image_3.path rescue "")}
 
           .ms-slide
-            %img{:alt => "Lorem ipsum", "data-src" => (@product.showcase_image_4.path rescue ""), :src => "masterslider/blank.gif"}
+            %img{:alt => @product.name, "data-src" => (@product.showcase_image_4.path rescue ""), :src => (@product.showcase_image_4.path rescue "")}
             %img.ms-thumb{:alt => "thumb", :src => (@product.showcase_image_4.path rescue "")}
 
       .col-lg-6.col-md-6
