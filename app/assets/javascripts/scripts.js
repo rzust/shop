@@ -437,6 +437,7 @@ $(document).ready(function(e) {
 	//Product Gallery
 	if($('#prod-gal').length > 0) {
 		var categorySlider = new MasterSlider();
+		alert("init");
 		categorySlider.control('thumblist' , {autohide:false ,dir:'h',align:'bottom', width:137, height:130, margin:15, space:0 , hideUnder:400});
 		categorySlider.setup('prod-gal' , {
 				width:550,
