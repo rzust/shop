@@ -100,10 +100,11 @@
 %section.tabs-widget
 
   %ul.nav.nav-tabs
-    %li.active
-      %a{"data-toggle" => "tab", :href => "#descr"} Descripción
-    %li
-      %a{"data-toggle" => "tab", :href => "#specs"} Especificaciones
+    / %li.active
+    /   %a{"data-toggle" => "tab", :href => "#descr"} Descripción
+    - unless @attributes.empty?
+      %li
+        %a{"data-toggle" => "tab", :href => "#specs"} Especificaciones
     %li
       %a{"data-toggle" => "tab", :href => "#review"} Comentarios
   .tab-content
@@ -119,29 +120,23 @@
 
                       .item
                         .row
-                          .col-lg-1.col-md-1.col-sm-4
-                            %i.icon-expand
-                          .col-lg-2.col-md-2.col-sm-4
+                          .col-lg-6.col-md-6.col-sm-6
                             %span
-                              = attribute[0].key
-                              = ":"
-                          .col-lg-8.col-md-8.col-sm-4
+                              = "#{attribute[0].key}:"
+                          .col-lg-6.col-md-6.col-sm-6
                             %span
                               =  link_to attribute[0].value, ""#product_filter_path(:key => attribute[0].key, :value => attribute[0].value)
-
                     .col-lg-6.col-md-6.col-sm-6
+                      - unless attribute[1].nil?
 
-                      .item
-                        .row
-                          .col-lg-1.col-md-1.col-sm-4
-                            %i.icon-expand
-                          .col-lg-2.col-md-2.col-sm-4
-                            %span
-                              = attribute[1].key
-                              = ":"
-                          .col-lg-8.col-md-8.col-sm-4
-                            %span
-                              =  link_to attribute[1].value, ""#product_filter_path(:key => attribute[1].key, :value => attribute[1].value)
+                        .item
+                          .row
+                            .col-lg-6.col-md-6.col-sm-6
+                              %span
+                                = "#{attribute[1].key}:"
+                            .col-lg-6.col-md-6.col-sm-6
+                              %span
+                                =  link_to attribute[1].value, ""
 
 
 
