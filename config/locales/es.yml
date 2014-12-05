@@ -132,6 +132,12 @@ es:
           attributes:
             base:
               can_belong_to_root: solo puede pertenecer a un producto base
+            description:
+              blank: La descripción no puede estar vacía
+            short_description:
+              blank: La descripción corta no puede estar vacía
+            sku:
+              blank: El SKU no puede estar vacío
         shoppe/order_item:
           attributes:
             quantity:
