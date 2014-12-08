@@ -8,7 +8,7 @@ class Middleware2
   def call(env)
     puts "calling middleware"
     if env['PATH_INFO'] =~ /\A\/attachment\/([a-f0-9\-]{36})\/(.*)/
-      if false#attachment = Nifty::Attachments::Attachment.find_by_token($1)
+      if attachment = Nifty::Attachments::Attachment.find_by_token($1)
         [200, {
           'Content-Length' => attachment.data.bytesize.to_s,
           'Content-Type' => attachment.file_type,
