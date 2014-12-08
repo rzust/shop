@@ -18,6 +18,8 @@ module Shop
 
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
+    config.autoload_paths += %W(#{config.root}/lib)
+    config.middleware.use "Middleware2"
     config.i18n.default_locale = :es
     config.assets.precompile += %w( about/* blog/* brands/* catalog/* categories/* cs-page/* features/* forms/* gallery-widget/* hero/* info-blocks/* masterslider/* media/* offers/* overlays/* payment/* people/* posts-widgets/* )
   end
