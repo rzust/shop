@@ -12,8 +12,8 @@
           %dt= settings_label f
           %dd
             = settings_field f
-            - if v = t("shoppe.settings.help")[f]
-              %p.help= v
+            / - if v = t("shoppe.settings.help")[f]
+            /   %p.help= v
 
   %p.submit.sided
     = submit_tag t("shoppe.settings.save_settings"), :class => 'button green'

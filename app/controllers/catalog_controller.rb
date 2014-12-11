@@ -12,7 +12,9 @@ class CatalogController < ApplicationController
   def index
     if !@product_category.nil?
       @products = @product_category.products.includes(:default_image, :product_category, :variants).root.active
-      # @product_category.children.each{ |x| @products.merge(x.products.includes(:default_image, :product_category, :variants).root.active)}
+      @product_category.children.each do |x|
+        @products = @products.merge(x.products.includes(:default_image, :product_category, :variants).root.active)
+      end
     else
       @products = Shoppe::Product.all.includes(:default_image, :product_category, :variants).root.active
     end
