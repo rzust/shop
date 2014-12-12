@@ -110,7 +110,7 @@ module Shoppe
 
     def self.search(search)
       if search
-        where('name LIKE ?', "%#{search}%").includes(:default_image, :product_category, :variants).root.active
+        where('name LIKE ?', "%#{search}%").includes(:default_image, :product_category, :variants).root.active.to_a
       end
     end
 

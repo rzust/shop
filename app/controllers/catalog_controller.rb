@@ -14,13 +14,13 @@ class CatalogController < ApplicationController
       @products = Shoppe::Product.search(params[:search])
     else
       if !@product_category.nil?
-        @products = @product_category.products.includes(:default_image, :product_category, :variants).root.active
+        @products = @product_category.products.includes(:default_image, :product_category, :variants).root.active.to_a
         @product_category.children.each do |x|
-          @products = @products.merge(x.products.includes(:default_image, :product_category, :variants).root.active)
+          @products = @products + x.products.includes(:default_image, :product_category, :variants).root.active.to_a
         end
       else
 
-        @products = Shoppe::Product.all.includes(:default_image, :product_category, :variants).root.active
+        @products = Shoppe::Product.all.includes(:default_image, :product_category, :variants).root.active.to_a
       end
     end
     @title    = "Productos"
