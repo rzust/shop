@@ -33,42 +33,33 @@
           Buy it now
 / Hero Slider Close
 / Categories
-%section.cat-tiles
+/ %section.cat-tiles
+/   .container
+/     %h2 Browse categories
+/     .row
+/       - categories.each do |category|
+/         .category.col-lg-2.col-md-2.col-sm-4.col-xs-6
+/           %a{:href => "#"}
+/             = image_tag category.image.path rescue ""
+/             %p
+/               = category.name
+
+%section.catalog-grid
   .container
-    %h2 Browse categories
+    %h2.with-sorting
+      Destacados
     .row
-      - categories.each do |category|
-        .category.col-lg-2.col-md-2.col-sm-4.col-xs-6
-          %a{:href => "#"}
-            = image_tag category.image.path rescue ""
-            %p
-              = category.name
-
-/ Categories Close
-
-
-
-
-
-/ %section.category-slider
-/   .master-slider#cat-slider
-/     - categories.each do |category|
-/       .ms-slide
-/         / Background
-/         %img{:alt => "lorem ipsum dolor sit", "data-src" => "assets/categories/slides/bg_1.png", :src => "assets/masterslider/blank.gif"}/
-/         / Text
-/         .ms-layer.text-block{"data-delay" => "250", "data-duration" => "800", "data-ease" => "easeOutQuad", "data-effect" => "left(50,true)"}
-/           %h2.light-color
-/             Look for all macs
-/             %br
-/             in our shop!
-/           %p.light-color Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim.
-/           %a.btn.btn-primary{:href => "#"} Go to catalog
-/           %a.btn.btn-success{:href => "#"} Browse all PC
-/         / Image
-/         %img.ms-layer.img-block{:alt => "1", "data-delay" => "350", "data-duration" => "800", "data-ease" => "easeOutQuad", "data-effect" => "back(500)", :src => "assets/categories/slides/slide_1.png", :style => "right: 50px;"}/
-/         .ms-thumb
-/           = image_tag category.image.path rescue ""
-/           / %img{:alt => "1", :src => "assets/categories/thumbs/th_1.png"}/
-/           %h3
-/             = category.name
+      - @featured.each do |x|
+        .col-lg-3.col-md-4.col-sm-6
+          .tile
+            .badges
+              / %span.sale
+            / .price-label
+            /   = currency_unit
+            /   {{product.price}}
+            / {{product}}
+            %a{href: product_path(category_id: x.product_category.permalink, product_id: x.permalink)}
+              = image_tag x.default_image.path
+            .footer
+              %a{href: product_path(category_id: x.product_category.permalink, product_id: x.permalink)}
+                = x.name
