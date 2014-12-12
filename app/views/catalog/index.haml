@@ -197,7 +197,7 @@
         @items = JSON.parse("#{j @products.as_json(:include => [:product_category, :default_image, :product_attributes]).to_json.html_safe}")
         @list = @items
         @currentPage = 0
-        @pageSize = 10
+        @pageSize = 12
 
       numberOfPages: ->
         Math.ceil @list.length / @pageSize
