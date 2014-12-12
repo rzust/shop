@@ -4,10 +4,10 @@
     = link_to "Catálogo", catalog_path
   - if !@product.product_category.parent.nil?
     %li
-      %a{:href => "#"}
+      %a{:href => catalog_path(category_id: @product.product_category.permalink)}
         = @product.product_category.parent.name
   %li
-    %a{:href => "#"}
+    %a{:href => catalog_path(category_id: @product.product_category.permalink)}
       = @product.product_category.name
   %li
     = @product.name

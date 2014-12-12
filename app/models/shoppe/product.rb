@@ -108,5 +108,11 @@ module Shoppe
       where(:id => product_ids)
     end
 
+    def self.search(search)
+      if search
+        where('name LIKE ?', "%#{search}%").includes(:default_image, :product_category, :variants).root.active
+      end
+    end
+
   end
 end

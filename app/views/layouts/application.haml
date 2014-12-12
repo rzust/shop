@@ -56,13 +56,13 @@
     %header{"data-offset-top" => "550", "data-stuck" => "650"}
       / data-offset-top is when header converts to small variant and data-stuck when it becomes visible. Values in px represent position of scroll from top. Make sure there is at least 100px between those two values for smooth animation
       / Search Form
-      %form.search-form.closed{:autocomplete => "off", :method => "get", :role => "form"}
+      %form.search-form.closed{:autocomplete => "off", :method => "get", :role => "form", url: catalog_path}
         .container
           .close-search
             %i.icon-delete
           .form-group
             %label.sr-only{:for => "search-hd"} Busca tu producto
-            %input#search-hd.form-control{:name => "search-hd", :placeholder => "Busca tu producto", :type => "text"}
+            %input#search-hd.form-control{:name => "search", :placeholder => "Busca tu producto", :type => "text"}
             %button{:type => "submit"}
               %i.icon-magnifier
       / Split Background
@@ -194,21 +194,21 @@
 
     / Sticky Buttons
     .sticky-btns
-      %form.quick-contact{:method => "post", :name => "quick-contact"}
-        %h3 Contáctenos
-        %p.text-muted
-        .form-group
-          %label{:for => "qc-name"} Nombre
-          %input#qc-name.form-control.input-sm{:name => "qc-name", :placeholder => "Nombre completo", :required => "", :type => "text"}
-        .form-group
-          %label{:for => "qc-email"} Email
-          %input#qc-email.form-control.input-sm{:name => "qc-email", :placeholder => "Email", :required => "", :type => "email"}
-        .form-group
-          %label{:for => "qc-message"} Mensaje
-          %textarea#qc-message.form-control.input-sm{:name => "qc-message", :placeholder => "Ingrese su mensaje", :required => ""}
-        %input.btn.btn-success.btn-sm.btn-block{:type => "submit", :value => "Send"}
-      %span#qcf-btn
-        %i.fa.fa-envelope
+      / %form.quick-contact{:method => "post", :name => "quick-contact"}
+      /   %h3 Contáctenos
+      /   %p.text-muted
+      /   .form-group
+      /     %label{:for => "qc-name"} Nombre
+      /     %input#qc-name.form-control.input-sm{:name => "qc-name", :placeholder => "Nombre completo", :required => "", :type => "text"}
+      /   .form-group
+      /     %label{:for => "qc-email"} Email
+      /     %input#qc-email.form-control.input-sm{:name => "qc-email", :placeholder => "Email", :required => "", :type => "email"}
+      /   .form-group
+      /     %label{:for => "qc-message"} Mensaje
+      /     %textarea#qc-message.form-control.input-sm{:name => "qc-message", :placeholder => "Ingrese su mensaje", :required => ""}
+      /   %input.btn.btn-success.btn-sm.btn-block{:type => "submit", :value => "Send"}
+      / %span#qcf-btn
+      /   %i.fa.fa-envelope
       %span#scrollTop-btn
         %i.fa.fa-chevron-up
     = render "layouts/shared/footer"
